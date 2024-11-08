@@ -1,0 +1,13 @@
+header{
+    font-size: 20px;
+    padding-left: 5px;
+    margin: 10px;
+    height: 25px;
+}
+body{
+    margin: 0;
+}
+button{
+    text-align: center;
+    font-family: 'cool-font';
+}

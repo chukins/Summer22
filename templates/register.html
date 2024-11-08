@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<header>Register:</header>
+<form method="POST" action="/register">
+    <ul>
+    <li>Username:
+        <input type="text" id="username" placeholder="John Doe" autocomplete="off">
+    </li>
+    <li>Password:
+        <input type="password" id="password" placeholder="password" autocomplete="off">
+    </li>
+    <li>Confirm Password:
+        <input type="password" id="password" placeholder="password" autocomplete="off">
+    </li>
+    <li>Email:
+        <input type="email" id="email" placeholder="example@domain.com" autocomplete="off">
+    </li>
+    <button type="submit" method="POST">Register</button>
+    </ul>
+</form>
+{% endblock %}

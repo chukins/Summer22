@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='loginstyles.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+{% extends "layout.html" %}
+{% block body %}
+<header>Log in:</header>
+<ul method="POST">
+    <li>Username:
+        <input type="text" id="username" placeholder="John Doe" autocomplete="off">
+    </li>
+    <li>Password:
+        <input type="password" id="password" placeholder="password" autocomplete="off">
+    </li>
+        <button type="submit">Log in</button>
+</ul>
+<h1>Dont have an account? <a href="{{url_for('register')}}">Click here</a></h1>
+{% endblock %}
