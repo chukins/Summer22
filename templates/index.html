@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
-<h1>index</h1>
+
+{% if username %} 
+<h1>You are logged in as {{ username }}. <a href="{{url_for('logout')}}">Log out</a></h1>
+
+{% else %} 
+    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+ 
+{% endif %} 
+
 <a href="{{url_for('login')}}">log in</a>
 {% endblock %}

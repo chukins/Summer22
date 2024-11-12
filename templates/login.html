@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='loginstyles.css')}}">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
+<link rel="stylesheet" href="{{url_for('static', filename='loginstyles.css')}}">
 {% extends "layout.html" %}
 {% block body %}
-<header>Log in:</header>
-<ul method="POST">
-    <li>Username:
-        <input type="text" id="username" placeholder="John Doe" autocomplete="off">
-    </li>
-    <li>Password:
-        <input type="password" id="password" placeholder="password" autocomplete="off">
-    </li>
+<h1>Log in:</h1>
+<div id="Register-form">    
+    <br>
+    <form method="POST" action="/login" id="Form-container">
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="John_Doe123" autocomplete="off">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="password" autocomplete="off">
         <button type="submit">Log in</button>
-</ul>
+    </form>
+</div>
 <h1>Dont have an account? <a href="{{url_for('register')}}">Click here</a></h1>
 {% endblock %}

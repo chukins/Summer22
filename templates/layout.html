@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <title>Document</title>
 </head>
+
 <body>
-    <header></header>
+    
     {% block body %}{% endblock %}
-    <footer></footer>
+    {% if username %}
+        <header>GibJohn tutoring <a href="{{url_for('logout')}}">Log out</a></header>
+    {% else %}    
+        <header>GibJohn Tutoring <a href="{{url_for('login')}}">Log in</a></header>
+    {% endif %}
+    <footer>Copyright 2055 Gibjohn Tutoring</footer>
 </body>
+
 </html>
+

@@ -1,13 +1,30 @@
-header{
-    font-size: 20px;
-    padding-left: 5px;
-    margin: 10px;
-    height: 25px;
-}
 body{
     margin: 0;
 }
 button{
     text-align: center;
-    font-family: 'cool-font';
 }
+
+#Register-form{
+    display: flex;
+    background-image: radial-gradient(#ff21e0, #b147a3);
+    padding: 20px;
+    border: 6px ridge #b147a3;
+    height: 200px;
+    width: 350px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+
+#Form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#RegButton{
+    font-size: 15px;
+    background-color: whitesmoke;
+}
+
