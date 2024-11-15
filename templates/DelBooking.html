@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block body %}
+    {%if username %}
+    <h1>Delete Booking</h1>
+    {% else %}
+    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+    {% endif %}
+{% endblock %}

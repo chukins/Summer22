@@ -5,9 +5,6 @@
 <h1>You are logged in as {{ username }}. <a href="{{url_for('logout')}}">Log out</a></h1>
 
 {% else %} 
-    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
- 
+    <h1>You are not logged in. click log in above to log in.</h1>
 {% endif %} 
-
-<a href="{{url_for('login')}}">log in</a>
 {% endblock %}

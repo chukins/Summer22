@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if username %}
+    <h1>What would you like to do?
+        <ul>
+            <li><a href="{{url_for('CreateBooking')}}">Create booking</a></li>
+            <li><a href="{{url_for('EditBooking')}}">edit booking</a></li>
+            <li><a href="{{url_for('DelBooking')}}">Delete booking</a></li>
+        </ul>
+    </h1>
+{% else %}
+    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+{% endif %}
+{% endblock %}

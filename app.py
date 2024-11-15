@@ -3,6 +3,8 @@ import hashlib
 import sqlite3
 import string
 from flask_session import Session
+import bcrypt
+salt = bcrypt.gensalt()
 acceptedChars = [x for x in string.punctuation+string.ascii_letters+string.digits]
 
 app = Flask(__name__)
@@ -35,13 +37,12 @@ def register():
         for z in username:
             if z not in acceptedChars:
                 return render_template("error.html", error="Username contains characters that are not allowed")
-        hashed = hashlib.sha512(password.encode()).hexdigest()
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         c.execute('''
             INSERT INTO LoginDetails (Username, Password, Email)
             VALUES (?, ?, ?)
-            ''', (username, hashed, email))
+            ''', (username, bcrypt.hashpw(password.encode("UTF-8"), salt), email))
         conn.commit()
         conn.close()
         session["username"] = request.form.get("username")
@@ -54,10 +55,11 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        hashed = hashlib.sha512(password.encode()).hexdigest()
+        hashed = bcrypt.hashpw(password.encode("UTF-8"), salt)
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
-        logCheck = c.execute('SELECT * FROM LoginDetails WHERE Username = ? AND Password = ?',(username, hashed)).fetchone()
+        logCheck = c.execute('''SELECT * FROM LoginDetails WHERE
+                              Username = ? AND Password = ?''',(username, hashed)).fetchone()
         if logCheck is None:
             return render_template("error.html", error="Invalid username or password")
         conn.close()
@@ -74,6 +76,25 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
+@app.route('/about')
+def about():
+    return render_template('About.html')
+
+@app.route('/Booking')
+def Booking():
+    return render_template('Bookings.html')
+
+@app.route('/DelBooking')
+def DelBooking():
+    return render_template('DelBooking.html', username=session['username'])
+
+@app.route('/createBooking')
+def cBooking():
+    return render_template('CreateBooking.html', username=session['username'])
+
+@app.route('/editBooking')
+def eBooking():
+    return render_template('EditBooking.html', username=session['username'])
 
 
 if __name__ == "__main__":
