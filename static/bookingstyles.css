@@ -1,0 +1,22 @@
+#subject{
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul{
+    list-style-type: none;
+}
+
+.date{
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.Createbook{
+    align-items: center;
+    justify-content: center;
+}

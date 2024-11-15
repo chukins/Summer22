@@ -49,3 +49,7 @@ a{
     padding-left: 50px;
     padding-right: 5px
 }
+
+p{
+    text-align: right;
+}

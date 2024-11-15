@@ -3,8 +3,7 @@ import hashlib
 import sqlite3
 import string
 from flask_session import Session
-import bcrypt
-salt = bcrypt.gensalt()
+
 acceptedChars = [x for x in string.punctuation+string.ascii_letters+string.digits]
 
 app = Flask(__name__)
@@ -39,14 +38,15 @@ def register():
                 return render_template("error.html", error="Username contains characters that are not allowed")
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
+        hashed = hashlib.sha512(password.encode()).hexdigest()
         c.execute('''
             INSERT INTO LoginDetails (Username, Password, Email)
             VALUES (?, ?, ?)
-            ''', (username, bcrypt.hashpw(password.encode("UTF-8"), salt), email))
+            ''', (username, hashed, email))
         conn.commit()
         conn.close()
         session["username"] = request.form.get("username")
-        return render_template("welcome.html", username=session['username'])
+        return render_template("welcome.html", username=session.get('username'))
     return render_template("register.html")
 
 
@@ -55,9 +55,11 @@ def login():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        hashed = bcrypt.hashpw(password.encode("UTF-8"), salt)
+        #encodes password to check it against the database
+        hashed = hashlib.sha512(password.encode()).hexdigest()
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
+        #checks that the username and password are in the database and match each other
         logCheck = c.execute('''SELECT * FROM LoginDetails WHERE
                               Username = ? AND Password = ?''',(username, hashed)).fetchone()
         if logCheck is None:
@@ -69,7 +71,7 @@ def login():
     
 @app.route("/welcome")
 def welcome():
-    return render_template("welcome.html", username=session['username'])
+    return render_template("welcome.html", username=session.get('username'))
 
 @app.route('/logout')
 def logout():
@@ -82,19 +84,51 @@ def about():
 
 @app.route('/Booking')
 def Booking():
-    return render_template('Bookings.html')
+    bookDB = sqlite3.connect('database2.db')
+    c = bookDB.cursor()
+    return render_template('Bookings.html', username=session.get('username'))
 
 @app.route('/DelBooking')
 def DelBooking():
-    return render_template('DelBooking.html', username=session['username'])
+    bookDB = sqlite3.connect('database2.db')
+    c = bookDB.cursor()
+    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''' (session['username'])).fetchone()
+    if bookCheck is None:
+        return render_template('DelBooking.html', book="No bookings found")
+    bookDB.commit()
+    bookDB.close()
+    return render_template('DelBooking.html', username=session.get('username'))
 
-@app.route('/createBooking')
+@app.route('/cBooking', methods=['POST', 'GET'])
 def cBooking():
-    return render_template('CreateBooking.html', username=session['username'])
+    bookDB = sqlite3.connect('database2.db')
+    if request.method == "POST":
+        subject = request.form.get('subject')
+        date = request.form.get('date')
+        print(subject, date)
+        c = bookDB.cursor()
+        c.execute('''INSERT INTO BookingInfo (Username, BookingDate, Subject) VALUES (?, ?, ?)''', (session['username'], date, subject))
+        bookDB.commit()
+        bookDB.close()
+        return render_template("index.html", username=session.get('username'))
+    return render_template('CreateBooking.html', username=session.get('username'))
 
-@app.route('/editBooking')
+@app.route('/eBooking')
 def eBooking():
-    return render_template('EditBooking.html', username=session['username'])
+    bookDB = sqlite3.connect('database2.db')
+    if request.method == 'POST':
+        NewBookingID = request.form.get('bookingID')
+        NewBookingDate = request.form.get('bookingDate')
+        c = bookDB.cursor()
+        bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''' (session['username'])).fetchone()
+        if bookCheck is None:
+            return render_template('EditBooking.html', book="No bookings found")
+        else:
+            c.execute('''UPDATE BookingInfo SET BookingDate = ? WHERE BookingID = ?''', (NewBookingDate, NewBookingID))
+        bookDB.commit()
+        bookDB.close()
+        return render_template('EditBooking.html', username=session.get('username'))
+    return render_template('EditBooking.html', username=session.get('username'))
 
 
 if __name__ == "__main__":

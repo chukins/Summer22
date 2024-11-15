@@ -32,3 +32,13 @@ button{
 main{
     justify-content: center;
 }
+
+#RegButton{
+    font-size: 15px;
+    background-color: whitesmoke;
+}
+
+.warning{
+    color: red;
+    font-size: 8px
+}
