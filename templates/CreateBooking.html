@@ -2,7 +2,6 @@
 {% extends "layout.html" %}
 {% block body %}
     {%if username %}
-
         {% if count >= 5 %}
         <h1>{{book}}</h1>
         <p>click<a href="{{url_for('Booking')}}">HERE</a> to go back to bookings page</p>
@@ -24,6 +23,7 @@
                 <br>
                 <button type="submit">Submit</button>
             </form>
+            {% endif %}
     {% else %}
     <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
     {% endif %}

@@ -3,6 +3,28 @@
 {% block body %}
     {%if username %}
     <h1>Delete Booking</h1>
+    <p>Please select the booking that you would like to delete: </p>
+    <div id="booking-form">
+        <form method="POST">   
+            <td>
+                <tr>{{data[0]}}</tr>
+                <button type="submit" name="book1">Delete</button>
+                <br>
+                <tr>{{data[1]}}</tr>
+                <button type="submit" name="book2">Delete</button>
+                <br>
+                <tr>{{data[2]}}</tr>
+                <button type="submit" name="book3">Delete</button>
+                <br>
+                <tr>{{data[3]}}</tr>
+                <button type="submit" name="book4">Delete</button>
+                <br>
+                <tr>{{data[4]}}</tr>
+                <button type="submit" name="book5">Delete</button>
+            </td>
+        </form>
+    </div>
+    
     <p>{{book}}</p>
     {% else %}
     <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>

@@ -15,7 +15,6 @@ button{
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
-    
 }
 
 #Form-container{
@@ -24,19 +23,12 @@ button{
     justify-content: center;
 }
 
-#RegButton{
-    font-size: 15px;
-    background-color: whitesmoke;
-}
+
 
 main{
     justify-content: center;
 }
 
-#RegButton{
-    font-size: 15px;
-    background-color: whitesmoke;
-}
 
 .warning{
     color: red;
