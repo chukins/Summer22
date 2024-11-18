@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="{{url_for('static', filename='bookingstyles.css')}}">
+{% extends "layout.html" %}
+{% block body %}
+    {%if username %}
+    <h1>Delete Booking</h1>
+    <p>{{book}}</p>
+    {% else %}
+    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+    {% endif %}
+{% endblock %}

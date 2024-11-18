@@ -8,14 +8,27 @@
 </head>
 
 <body>
-    
-    {% block body %}{% endblock %}
     {% if username %}
-        <header>GibJohn tutoring <a href="{{url_for('logout')}}">Log out</a></header>
+        <header>
+            <img class="left" src="{{url_for('static', filename='GibjohnLogo.png')}}" alt=".">
+            <a href="{{url_for('index')}}">GibJohn tutoring</a>
+            <a href="{{url_for('index')}}">Home</a>
+            <a href="{{url_for('about')}}">About us</a>
+            <a href="{{url_for('Booking')}}">Bookings</a>
+            <a href="{{url_for('logout')}}">Log out</a>
+        </header>
     {% else %}    
-        <header>GibJohn Tutoring <a href="{{url_for('login')}}">Log in</a></header>
+        <header>
+            <img src="{{url_for('static', filename='GibjohnLogo.png')}}" alt=".">
+            <a href="{{url_for('index')}}">GibJohn Tutoring</a>
+            <a href="{{url_for('index')}}">Home</a>
+            <a href="{{url_for('about')}}">About us</a>
+            <a href="{{url_for('Booking')}}">Bookings</a>
+            <a href="{{url_for('login')}}">Log in</a>
+        </header>
     {% endif %}
-    <footer>Copyright 2055 Gibjohn Tutoring</footer>
+    <main>{% block body %}{% endblock %}</main>
+    <footer>© 2055 Gibjohn Tutoring</footer>
 </body>
 
 </html>

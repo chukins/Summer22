@@ -7,12 +7,12 @@ button{
 
 #Register-form{
     display: flex;
-    background-image: radial-gradient(#ff21e0, #b147a3);
+    background-image: radial-gradient(#3c2b1a, #a1b2c3);
     padding: 20px;
-    border: 6px ridge #b147a3;
-    height: 200px;
+    border: 6px ridge #3c2b1a;
+    height: 250px;
     width: 350px;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     align-content: center;
     
@@ -21,6 +21,7 @@ button{
 #Form-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 #RegButton{
@@ -28,3 +29,16 @@ button{
     background-color: whitesmoke;
 }
 
+main{
+    justify-content: center;
+}
+
+#RegButton{
+    font-size: 15px;
+    background-color: whitesmoke;
+}
+
+.warning{
+    color: red;
+    font-size: 8px
+}

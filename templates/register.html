@@ -2,20 +2,23 @@
 {% extends "layout.html" %}
 {% block body %}
 <h1>Register:</h1>
-<main>
-    <div id="Register-form">
-        <form method="POST" action="/register" id="Form-container" >
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="John_Doe123" autocomplete="off">
-            <label for="password">Password:</label>
-            <input type="password" name="password" placeholder="password" autocomplete="off">
-            <label for="password2">Confirm Password:</label>
-            <input type="password" name="password2" placeholder="password" autocomplete="off">
-            <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="example@domain.com" autocomplete="off">
-            <br>
-            <button id="RegButton" type="submit">Register</button>
-        </form>
-    </div>
-</main>
+<body>
+    <main>
+        <div id="Register-form">
+            <form method="POST" action="/register" id="Form-container" >
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="John_Doe123" autocomplete="off">
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="password" autocomplete="off">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" name="password2" placeholder="password" autocomplete="off">
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="example@domain.com" autocomplete="off">
+                <p class="warning">*YOU CAN NOT CHANGE YOUR EMAIL ONCE SIGNED UP*</p>
+                <br>
+                <button id="RegButton" type="submit">Register</button>
+            </form>
+        </div>
+    </main>
+</body>
 {% endblock %}

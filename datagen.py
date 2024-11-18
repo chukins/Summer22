@@ -1,12 +1,13 @@
 import sqlite3
-conn = sqlite3.connect('database.db')
+conn = sqlite3.connect('database2.db')
 
 c = conn.cursor()
 
-c.execute("""CREATE TABLE LoginDetails (
-          Username text UNIQUE NOT NULL,
-          Password text NOT NULL,
-          Email text NOT NULL UNIQUE
+c.execute("""CREATE TABLE BookingInfo (
+          BookingID integer PRIMARY KEY,
+            Username text NOT NULL,
+            BookingDate text NOT NULL,
+          Subject text NOT NULL
           )""")
 conn.commit()
 

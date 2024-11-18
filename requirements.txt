@@ -1,3 +1,5 @@
 flask
 hashlib
 sqlite3
+string
+flask_session
