@@ -9,13 +9,18 @@
 
 <body>
     {% if username %}
+<<<<<<< HEAD
         <header>
             <img class="left" src="{{url_for('static', filename='GibjohnLogo.png')}}" alt=".">
             <a href="{{url_for('index')}}">GibJohn tutoring</a>
+=======
+        <header>GibJohn tutoring 
+>>>>>>> 9be074a19af172131539d707da09d57e142634ae
             <a href="{{url_for('index')}}">Home</a>
             <a href="{{url_for('about')}}">About us</a>
             <a href="{{url_for('Booking')}}">Bookings</a>
             <a href="{{url_for('logout')}}">Log out</a>
+<<<<<<< HEAD
         </header>
     {% else %}    
         <header>
@@ -26,6 +31,16 @@
             <a href="{{url_for('Booking')}}">Bookings</a>
             <a href="{{url_for('login')}}">Log in</a>
         </header>
+=======
+            
+        </header>
+    {% else %}    
+        <header>GibJohn Tutoring
+            <a href="{{url_for('index')}}">Home</a>
+            <a href="{{url_for('about')}}">About us</a>
+            <a href="{{url_for('Booking')}}">Bookings</a>
+            <a href="{{url_for('login')}}">Log in</a></header>
+>>>>>>> 9be074a19af172131539d707da09d57e142634ae
     {% endif %}
     <main>{% block body %}{% endblock %}</main>
     <footer>© 2055 Gibjohn Tutoring</footer>
