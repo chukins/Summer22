@@ -3,7 +3,7 @@
 {% block body %}
     {%if username %}
     <h1>Edit booking</h1>
-<<<<<<< HEAD
+
     <p>Welcome {{username}}, which booking would you like to edit?</p>
     
     <tr>
@@ -21,8 +21,6 @@
         <input name="bookingDate" type="date" required placeholder="dd/mm/yyyy">
         <button type="submit">Submit</button>
     </form>
-=======
->>>>>>> 9be074a19af172131539d707da09d57e142634ae
     {% else %}
     <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
     {% endif %}
