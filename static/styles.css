@@ -50,17 +50,10 @@ a{
     text-decoration: none;
     color: black;
     padding-left: 50px;
-<<<<<<< HEAD
-    padding-right: 5px;
-    padding-top: 11px;
-=======
-    padding-right: 5px
->>>>>>> 9be074a19af172131539d707da09d57e142634ae
 }
 
 p{
     text-align: right;
-<<<<<<< HEAD
 }
 
 img{
@@ -73,6 +66,4 @@ img{
     text-align: left;
     align-items: left;
 }
-=======
-}
->>>>>>> 9be074a19af172131539d707da09d57e142634ae
+
