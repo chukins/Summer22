@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
     {%if username %}
-<<<<<<< HEAD
+
         {% if count >= 5 %}
         <h1>{{book}}</h1>
         <p>click<a href="{{url_for('Booking')}}">HERE</a> to go back to bookings page</p>
@@ -24,28 +24,6 @@
                 <br>
                 <button type="submit">Submit</button>
             </form>
-            {% endif %}
-=======
-    <!--jinja tags to make sure you are signed in to view the page-->
-    <h1>Create booking</h1>
-    <p>which booking would you like?</p>
-    <!--form to let user book session-->
-    <form method="POST" class="Createbook">
-        <select name="subject" id="subject">
-            <option required>maths</option>
-            <option required>english</option>
-            <option required>Philosophy</option>
-            <option required>physics</option>
-            <option required>psychology</option>
-            <option required>geography</option>
-        </select>
-        <br>
-        <input type="date" class="date" name="date" required>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-
->>>>>>> 9be074a19af172131539d707da09d57e142634ae
     {% else %}
     <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
     {% endif %}
