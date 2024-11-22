@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
 
-{% if username %} 
+{% if username %}
+<div id="bannerContainer">
+    <img src="{{url_for('static', filename='GibJohnBanner.png')}}" alt="." class="banner">
+</div>
 <h1>You are logged in as {{ username }}. <a href="{{url_for('logout')}}">Log out</a></h1>
 
 {% else %} 
+<div id="bannerContainer">
+    <img src="{{url_for('static', filename='GibJohnBanner.png')}}" alt="." class="banner">
+</div>
     <h1>You are not logged in. click log in above to log in.</h1>
 {% endif %} 
 {% endblock %}

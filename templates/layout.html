@@ -9,27 +9,22 @@
 
 <body>
     {% if username %}
-
         <header>
-            <img class="left" src="{{url_for('static', filename='GibjohnLogo.png')}}" alt=".">
-            <a href="{{url_for('index')}}">GibJohn tutoring</a>
-
-        <header>GibJohn tutoring 
-
-            <a href="{{url_for('index')}}">Home</a>
-            <a href="{{url_for('about')}}">About us</a>
-            <a href="{{url_for('Booking')}}">Bookings</a>
-            <a href="{{url_for('logout')}}">Log out</a>
-
+            <img class="left headerV" src="{{url_for('static', filename='GibjohnLogo.png')}}" alt="." class="headerV">
+            <a href="{{url_for('index')}}" class="headerV">GibJohn tutoring</a>
+            <a href="{{url_for('index')}}" class="headerV">Home</a>
+            <a href="{{url_for('about')}}" class="headerV">About us</a>
+            <a href="{{url_for('Booking')}}" class="headerV">Bookings</a>
+            <a href="{{url_for('logout')}}" class="headerV">Log out</a>
         </header>
     {% else %}    
         <header>
-            <img src="{{url_for('static', filename='GibjohnLogo.png')}}" alt=".">
-            <a href="{{url_for('index')}}">GibJohn Tutoring</a>
-            <a href="{{url_for('index')}}">Home</a>
-            <a href="{{url_for('about')}}">About us</a>
-            <a href="{{url_for('Booking')}}">Bookings</a>
-            <a href="{{url_for('login')}}">Log in</a>
+            <img src="{{url_for('static', filename='GibjohnLogo.png')}}" alt="." class="headerV">
+            <a href="{{url_for('index')}}" class="headerV">GibJohn Tutoring</a>
+            <a href="{{url_for('index')}}" class="headerV">Home</a>
+            <a href="{{url_for('about')}}" class="headerV">About us</a>
+            <a href="{{url_for('Booking')}}" class="headerV">Bookings</a>
+            <a href="{{url_for('login')}}" class="headerV">Log in</a>
         </header>
     {% endif %}
     <main>{% block body %}{% endblock %}</main>
@@ -37,4 +32,3 @@
 </body>
 
 </html>
-

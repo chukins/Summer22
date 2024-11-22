@@ -15,7 +15,7 @@ Session(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", username=session.get('username'))
 
 @app.route("/register", methods=['POST', 'GET'])
 def register():
@@ -80,7 +80,7 @@ def logout():
 
 @app.route('/about')
 def about():
-    return render_template('About.html')
+    return render_template('About.html', username=session.get('username'))
 
 @app.route('/Booking')
 def Booking():
@@ -92,11 +92,7 @@ def Booking():
 def DelBooking():
     bookDB = sqlite3.connect('database2.db')
     c = bookDB.cursor()
-
     bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchone()
-
-    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''' (session['username'])).fetchone()
-
     if bookCheck is None:
         return render_template('DelBooking.html', book="No bookings found")
     bookDB.commit()
@@ -111,7 +107,6 @@ def cBooking():
         date = request.form.get('date')
         print(subject, date)
         c = bookDB.cursor()
-
         bookCheck = c.execute('''INSERT INTO BookingInfo (Username, BookingDate, Subject) VALUES (?, ?, ?)''', (session['username'], date, subject))
         bookDB.commit()
         bookDB.close()
@@ -121,17 +116,10 @@ def cBooking():
     count = len(bookCheck)
     return render_template('CreateBooking.html', username=session.get('username'), count=count, book="You have reached the maximum amount of bookings")
 
-        c.execute('''INSERT INTO BookingInfo (Username, BookingDate, Subject) VALUES (?, ?, ?)''', (session['username'], date, subject))
-        bookDB.commit()
-        bookDB.close()
-        return render_template("index.html", username=session.get('username'))
-    return render_template('CreateBooking.html', username=session.get('username'), count=len(BookingInfo))
-
 @app.route('/eBooking')
 def eBooking():
     bookDB = sqlite3.connect('database2.db')
     if request.method == 'POST':
-
         NewBookingDate = request.form.get('bookingDate')
         c = bookDB.cursor()
         bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'])).fetchone()
@@ -151,20 +139,6 @@ def eBooking():
         if book not in uniqueBookCheck:
             uniqueBookCheck.append(book)
     return render_template('EditBooking.html', username=session.get('username'), data=uniqueBookCheck)
-
-        NewBookingID = request.form.get('bookingID')
-        NewBookingDate = request.form.get('bookingDate')
-        c = bookDB.cursor()
-        bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''' (session['username'])).fetchone()
-        if bookCheck is None:
-            return render_template('EditBooking.html', book="No bookings found")
-        else:
-            c.execute('''UPDATE BookingInfo SET BookingDate = ? WHERE BookingID = ?''', (NewBookingDate, NewBookingID))
-        bookDB.commit()
-        bookDB.close()
-        return render_template('EditBooking.html', username=session.get('username'))
-    return render_template('EditBooking.html', username=session.get('username'))
-
 
 
 if __name__ == "__main__":
