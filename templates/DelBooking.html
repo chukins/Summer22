@@ -2,29 +2,21 @@
 {% extends "layout.html" %}
 {% block body %}
     {%if username %}
+    <script defer src="{{url_for('static', filename='EditBookingDate.js')}}"></script>
     <h1>Delete Booking</h1>
     <p>Please select the booking that you would like to delete: </p>
-    <div id="booking-form">
-        <form method="POST">   
-            <td>
-                <tr>{{data[0]}}</tr>
-                <button type="submit" name="book1">Delete</button>
-                <br>
-                <tr>{{data[1]}}</tr>
-                <button type="submit" name="book2">Delete</button>
-                <br>
-                <tr>{{data[2]}}</tr>
-                <button type="submit" name="book3">Delete</button>
-                <br>
-                <tr>{{data[3]}}</tr>
-                <button type="submit" name="book4">Delete</button>
-                <br>
-                <tr>{{data[4]}}</tr>
-                <button type="submit" name="book5">Delete</button>
-            </td>
+    <div id="booking-container">
+        <form method="POST" action="/DelBooking">
+            <select>
+                <option value="{{data[0]}}">{{data[0]}}</option>
+                <option value="{{data[1]}}">{{data[1]}}</option>
+                <option value="{{data[2]}}">{{data[2]}}</option>
+                <option value="{{data[3]}}">{{data[3]}}</option>
+                <option value="{{data[4]}}">{{data[4]}}</option>
+            </select>
+            <button type="submit" id="booking-form">Confirm</button>
         </form>
     </div>
-    
     <p>{{book}}</p>
     {% else %}
     <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>

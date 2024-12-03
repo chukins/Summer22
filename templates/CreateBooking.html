@@ -4,19 +4,19 @@
     {%if username %}
         {% if count >= 5 %}
         <h1>{{book}}</h1>
-        <p>click<a href="{{url_for('Booking')}}">HERE</a> to go back to bookings page</p>
+        <p>click<a href="{{url_for('Booking')}}">here</a>to go back to bookings page</p>
         {% elif count < 5 %}
             <h1>Create booking</h1>
             <p>which booking would you like?</p>
             <!--form to let user book session-->
             <form method="POST" class="Createbook">
                 <select name="subject" id="subject">
-                    <option required>maths</option>
-                    <option required>english</option>
+                    <option required>Maths</option>
+                    <option required>English</option>
                     <option required>Philosophy</option>
-                    <option required>physics</option>
-                    <option required>psychology</option>
-                    <option required>geography</option>
+                    <option required>Physics</option>
+                    <option required>Psychology</option>
+                    <option required>Geography</option>
                 </select>
                 <br>
                 <input type="date" class="date" name="date" required>

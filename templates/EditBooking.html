@@ -2,26 +2,35 @@
 {% extends "layout.html" %}
 {% block body %}
     {%if username %}
-    <h1>Edit booking</h1>
 
-    <p>Welcome {{username}}, which booking would you like to edit?</p>
-    
-    <tr>
-        <td>{{data[0]}}</td><button href="#newCourse">select</button>
-        <td>{{data[1]}}</td><button href="#newCourse">select</button>
-        <td>{{data[2]}}</td><button href="#newCourse">select</button>
-        <td>{{data[3]}}</td><button href="#newCourse">select</button>
-        <td>{{data[4]}}</td><button href="#newCourse">select</button>
-        <br>
-    </tr>
-<br><br><br><br><br>
-    <p>Please select a new date for the course that you have chose</p>
-    <form method="POST" action="/EditBooking" id="newCourse">
-        <label for="bookingDate">New date:</label>
-        <input name="bookingDate" type="date" required placeholder="dd/mm/yyyy">
-        <button type="submit">Submit</button>
-    </form>
+        {% for item in data %}
+            {{item}}
+        {% endfor %}
+        <script defer src="{{url_for('static', filename='EditBookingDate.js')}}"></script>
+        <div id="overlay"></div>
+        <h1>Edit booking</h1>
+        <p>Welcome {{username}}, which booking would you like to edit?</p>
+        <div id="booking-container">
+            <form method="POST" action="/eBooking">
+                <label for="item"></label>
+                <select name="item" id="item">
+                    <option value="{{data[0]}}">{{data[0]}}</option><br>
+                    <option value="{{data[1]}}">{{data[1]}}</option><br>
+                    <option value="{{data[2]}}">{{data[2]}}</option><br>
+                    <option value="{{data[3]}}">{{data[3]}}</option><br>
+                    <option value="{{data[4]}}">{{data[4]}}</option><br>
+                </select>
+                <button id="booking-form">Select</button>
+                
+                <div id="confirm">
+            
+                <label for="NewDate">Please select a new date for the course:</label>
+                <input type="date" name="NewDate" required placeholder="DD/MM/YYYY">
+                <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
     {% else %}
-    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+        <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
     {% endif %}
 {% endblock %}

@@ -8,6 +8,7 @@
 
 ul{
     list-style-type: none;
+    padding: 0
 }
 
 .date{
@@ -20,23 +21,6 @@ ul{
     align-items: center;
     justify-content: center;
 }
-
-#booking-container{
-    display: flex;
-    background-color: #b0b0b0;
-    padding: 20px;
-    border: 6px ridge #8f6a46;
-    height: 250px;
-    width: 400px;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
-}
-
-#booking-form:hover{
-    cursor: pointer;
-}
-
 
 #confirm{
     position: absolute;
@@ -54,6 +38,21 @@ ul{
     z-index: 1001;
 }
 
+#booking-container{
+    display: flex;
+    background-color: #da7816;
+    padding: 20px;
+    border: 6px ridge #8f6a46;
+    height: 300px;
+    width: 400px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#booking-form:hover{
+    cursor: pointer;
+}
 
 #overlay {
     position: fixed;
@@ -64,4 +63,11 @@ ul{
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
     display: none; /* Hidden by default */
     z-index: 1000; /* Ensure it is on top */
+}
+
+.item{
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #bb7127;
 }

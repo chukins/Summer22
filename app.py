@@ -90,7 +90,7 @@ def Booking():
 
 @app.route('/DelBooking', methods=['POST', 'GET'])
 def DelBooking():
-    booking = request.form.get('booking')
+
     bookDB = sqlite3.connect('database2.db')
     c = bookDB.cursor()
     bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchone()
@@ -99,13 +99,31 @@ def DelBooking():
     bookDB.commit()
 
     if request.method == 'POST':
-        c.execute('''DELETE FROM BookingInfo WHERE Username = ? AND BookingDate = ?''', (session['username'], booking))
+        booking = request.form.get('booking')
+        Bookingconfirm = request.form.get('item')
+        Bookingconfirm = Bookingconfirm.split(" ")
+        Bookingconfirm[-1] = Bookingconfirm[-1].replace(")", "")
+        Bookingconfirm[-1] = Bookingconfirm[-1].replace("'", "")
+        c.execute('''DELETE FROM BookingInfo WHERE Username = ? AND BookingDate = ? AND Subject = ?''', (session['username'], booking, Bookingconfirm[-1]))
         bookDB.commit()
         bookDB.close()
-        return render_template('DelBooking.html', username=session.get('username'))
+        return render_template('index.html', username=session.get('username'))
     c = bookDB.cursor()
     bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchall()
     return render_template('DelBooking.html', username=session.get('username'), data=bookCheck)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/cBooking', methods=['POST', 'GET'])
 def cBooking():
@@ -113,14 +131,13 @@ def cBooking():
     if request.method == "POST":
         subject = request.form.get('subject')
         date = request.form.get('date')
-        print(subject, date)
         c = bookDB.cursor()
         bookCheck = c.execute('''INSERT INTO BookingInfo (Username, BookingDate, Subject) VALUES (?, ?, ?)''', (session['username'], date, subject))
         bookDB.commit()
         bookDB.close()
         return render_template("index.html", username=session.get('username'))
-    c= bookDB.cursor()
-    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchall()
+    c = bookDB.cursor()
+    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE Username = ?''', (session['username'],)).fetchall()
     count = len(bookCheck)
     return render_template('CreateBooking.html', username=session.get('username'), count=count, book="You have reached the maximum amount of bookings")
 
@@ -128,20 +145,24 @@ def cBooking():
 def eBooking():
     bookDB = sqlite3.connect('database2.db')
     if request.method == 'POST':
-        NewBookingDate = request.form.get('bookingDate')
+        Bookingconfirm = request.form.get('item')
+        Bookingconfirm = Bookingconfirm.split(" ")
+        Bookingconfirm[-1] = Bookingconfirm[-1].replace(")", "")
+        Bookingconfirm[-1] = Bookingconfirm[-1].replace("'", "")
+
+        NewBookingDate = request.form.get('NewDate')
         c = bookDB.cursor()
-        bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchone()
+        bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE Username = ?''', (session['username'],)).fetchall()
         if bookCheck is None:
-            return render_template('EditBooking.html', book="No bookings found")
+            return render_template('EditBooking.html', username=session.get('username'), book="No bookings found")
         else:
-            c.execute('''UPDATE BookingInfo SET BookingDate = ?''',(NewBookingDate,))
-        bookDB.commit()
-        bookDB.close()
-        return render_template('EditBooking.html', username=session.get('username'))
+            c.execute('''UPDATE BookingInfo
+                       SET BookingDate = ? WHERE Subject = ?''',(NewBookingDate, Bookingconfirm[-1]))
+            bookDB.commit()
+            bookDB.close()
+        return render_template('index.html', username=session.get('username'))
     c = bookDB.cursor()
-    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchall()
-    print(len(bookCheck))
-    print(bookCheck[0])
+    bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE Username = ?''', (session['username'],)).fetchall()
     uniqueBookCheck = []
     for book in bookCheck:
         if book not in uniqueBookCheck:
