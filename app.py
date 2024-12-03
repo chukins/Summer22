@@ -140,7 +140,13 @@ def eBooking():
         return render_template('EditBooking.html', username=session.get('username'))
     c = bookDB.cursor()
     bookCheck = c.execute('''SELECT * FROM BookingInfo WHERE username = ?''', (session['username'],)).fetchall()
-    return render_template('EditBooking.html', username=session.get('username'), data=bookCheck)
+    print(len(bookCheck))
+    print(bookCheck[0])
+    uniqueBookCheck = []
+    for book in bookCheck:
+        if book not in uniqueBookCheck:
+            uniqueBookCheck.append(book)
+    return render_template('EditBooking.html', username=session.get('username'), data=uniqueBookCheck)
 
 
 if __name__ == "__main__":

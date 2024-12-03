@@ -22,6 +22,25 @@
     align-items: center;
 }
 
+.headerV{
+    background-color: #b0b0b0;
+}
+.banner{
+    height: 400px;
+    width: 75%;
+    padding: 0;
+    margin: 0;
+}
+#bannerContainer{
+    display: flex;
+    background-image: radial-gradient(#3c2b1a, #a1b2c3);
+    border: 6px ridge #3c2b1a;
+    height: 420px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
 header{
     font-size: 20px;
     width: 100%;
@@ -86,9 +105,4 @@ img{
 .left{
     text-align: left;
     align-items: left;
-}
-
-.right{
-    text-align: right;
-    align-items: right;
 }

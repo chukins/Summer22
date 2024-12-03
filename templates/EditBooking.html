@@ -2,86 +2,26 @@
 {% extends "layout.html" %}
 {% block body %}
     {%if username %}
-        <h1>Edit booking</h1>
-        <p>Welcome {{username}}, which booking would you like to edit?</p>
-        <div id="booking-container">
-            <div id="booking-form">
-                <ul>
-                    <li id="item1">{{data[0]}}</li>
-                </ul>
-            </div>
-        </div>
-        <script defer src="{{url_for('static', filename='test.js')}}"></script>
-        <button id="darkenButton">Darken Screen</button>
-        <div id="overlay"></div>
-        <div id="confirm">
-            <p>test</p>
-            <a href="{{url_for('index')}}">hi</a>
-        </div>
+    <h1>Edit booking</h1>
+
+    <p>Welcome {{username}}, which booking would you like to edit?</p>
+    
+    <tr>
+        <td>{{data[0]}}</td><button href="#newCourse">select</button>
+        <td>{{data[1]}}</td><button href="#newCourse">select</button>
+        <td>{{data[2]}}</td><button href="#newCourse">select</button>
+        <td>{{data[3]}}</td><button href="#newCourse">select</button>
+        <td>{{data[4]}}</td><button href="#newCourse">select</button>
+        <br>
+    </tr>
+<br><br><br><br><br>
+    <p>Please select a new date for the course that you have chose</p>
+    <form method="POST" action="/EditBooking" id="newCourse">
+        <label for="bookingDate">New date:</label>
+        <input name="bookingDate" type="date" required placeholder="dd/mm/yyyy">
+        <button type="submit">Submit</button>
+    </form>
     {% else %}
-        <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
+    <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
     {% endif %}
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--            <form>
-                <tr>
-                    <td>{{data[0]}}</td><button href="#newCourse">select</button>
-                    <br>
-                    <td>{{data[1]}}</td><button href="#newCourse">select</button>
-                    <br>
-                    <td>{{data[2]}}</td><button href="#newCourse">select</button>
-                    <br>
-                    <td>{{data[3]}}</td><button href="#newCourse">select</button>
-                    <br>
-                    <td>{{data[4]}}</td><button href="#newCourse">select</button>
-                </tr>
-            </form>
-        <p>Please select a new date for the course that you have chose</p>
-        <form method="POST" action="/EditBooking" id="newCourse">
-            <label for="bookingDate">New date:</label>
-            <input name="bookingDate" type="date" required placeholder="dd/mm/yyyy">
-            <button type="submit">Submit</button>
-        </form>-->
