@@ -4,6 +4,7 @@
 {% if username %}
 <h1>Welcome {{username}}</h1>
 <p><a href="{{url_for('index')}}">click here</a> to go to the home page</p>
+<img src="{{url_for('static', filename='giraffe.png')}}" alt="Geoffery" id="geoffery">
 {% else %}
 <h1>You are not logged in. <a href="{{url_for('login')}}">Log in</a></h1>
 {% endif %}

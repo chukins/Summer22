@@ -115,16 +115,6 @@ def DelBooking():
 
 
 
-
-
-
-
-
-
-
-
-
-
 @app.route('/cBooking', methods=['POST', 'GET'])
 def cBooking():
     bookDB = sqlite3.connect('database2.db')
